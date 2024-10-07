@@ -22,10 +22,9 @@ jobs:
         run: |                    
           echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
 
-      - name: create environment.ts
-        # working-directory: /
+      - name: create environment.ts        
         run: |
-          cat <<EOT > ui/environment.ts
+          cat <<EOT > ui/src/environments/environment.ts
           export const environment = {
           production: '',
           baseApiUrl: '',
