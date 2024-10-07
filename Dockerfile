@@ -2,9 +2,10 @@
 FROM node:20.11 AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+COPY ./yarn.lock ./
+RUN yarn install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN yarn build
 
 # Stage 2: Nginx Setup
 FROM georgjung/nginx-brotli:1.25.3-alpine

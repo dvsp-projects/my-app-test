@@ -1,0 +1,11 @@
+name: build ui
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build-ui-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
