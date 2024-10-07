@@ -4,8 +4,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-ui-job:
+  build-ui:
+    environment: dev
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
+
+      - name: docker login
+        run: |                    
+          echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
+
+        
