@@ -1,6 +1,5 @@
 name: build ui
-on:
-  push:
+on:  
   workflow_dispatch:
     inputs:
       environment:
@@ -8,6 +7,7 @@ on:
         type: environment
         required: true
         description: Select the environment
+  push:        
 
 jobs:
   build-ui:
