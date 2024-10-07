@@ -22,7 +22,7 @@ jobs:
         run: |                    
           echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
 
-      - name: Configure NG Build Environment
+      - name: create environment.ts 
         working-directory: ui/src/environments
         run: |
           cat > environment.ts << EOF
