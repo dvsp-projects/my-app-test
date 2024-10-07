@@ -22,7 +22,7 @@ jobs:
         run: |                    
           echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
 
-      - name: create environment.ts 
+      - name: create environment.ts
         # working-directory: /
         run: |
           cat <<EOT > ui/environment.ts
@@ -35,8 +35,8 @@ jobs:
           msalResourceScopeID: '',
           mail: '',
           };
-          <EOT          
-        shell: bash          
+          EOT
+        shell: bash
 
       - name: build and push to registry
         uses: docker/build-push-action@v6
