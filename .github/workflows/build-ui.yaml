@@ -24,7 +24,7 @@ jobs:
 
       - name: create environment.ts 
         run: |
-          cat <<EOF > environment.ts 
+          cat <<EOF > ./ui/src/environments/environment.ts 
           export const environment = {
           production: '',
           baseApiUrl: '',
