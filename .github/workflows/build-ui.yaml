@@ -7,11 +7,13 @@ on:
         type: environment
         required: true
         description: Select the environment
-  push:        
+  push:     
+  pull_request:
+    
 
 jobs:
   build-ui:
-    environment: ${{ inputs.environment }}
+    environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout
