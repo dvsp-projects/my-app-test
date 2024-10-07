@@ -2,10 +2,16 @@ name: build ui
 on:
   push:
   workflow_dispatch:
+    inputs:
+      environment:
+        default: dev
+        type: environment
+        required: true
+        description: Select the environment
 
 jobs:
   build-ui:
-    environment: dev
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -14,5 +20,8 @@ jobs:
       - name: docker login
         run: |                    
           echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
+
+      # - name: build and push 
+      #   uses: docker/build-push-action@v6
 
         
