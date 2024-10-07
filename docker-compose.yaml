@@ -1,0 +1,20 @@
+version: '3.9'  
+
+services:
+  ui:
+    image: ${UI_IMAGE}:${UI_TAG}
+    restart: unless-stopped
+    build: .
+    volumes:
+      - ${APPLICATION_KEY}:/etc/nginx/ca.key:ro
+      - ${APPLICATION_CRT}:/etc/nginx/ca.crt:ro
+      - ${LOGS_PATH}/ui:/var/log/nginx/      
+    ports:      
+      - "443:443"
+    env_file:
+      - .env
+
+networks:
+  default:
+    name: ca-internal
+
