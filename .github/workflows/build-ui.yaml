@@ -22,6 +22,21 @@ jobs:
         run: |                    
           echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
 
+      - name: Configure NG Build Environment
+        working-directory: ui/src/environments
+        run: |
+          cat > environment.ts << EOF
+          export const environment = {
+          production: '',
+          baseApiUrl: '',
+          baseUrl: '',
+          msalClientID: '',
+          msalTenantID: '',
+          msalResourceScopeID: '',
+          mail: '',
+          };
+          EOF          
+
       - name: build and push to registry
         uses: docker/build-push-action@v6
         with:
