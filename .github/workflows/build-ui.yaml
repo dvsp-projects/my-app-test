@@ -25,7 +25,7 @@ jobs:
       - name: create environment.ts 
         # working-directory: /ui/src/environments/
         run: |
-          cat > /test/environment.ts <<EOF
+          cat > test/environment.ts <<EOF
           export const environment = {
           production: '',
           baseApiUrl: '',
