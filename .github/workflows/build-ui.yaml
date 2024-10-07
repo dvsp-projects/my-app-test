@@ -22,10 +22,9 @@ jobs:
         run: |                    
           echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
 
-      - name: create environment.ts 
-        # working-directory: /ui/src/environments/
+      - name: create environment.ts         
         run: |
-          cat > test/environment.ts <<EOF
+          cat > ui/src/environments/environment.ts <<EOF
           export const environment = {
           production: '',
           baseApiUrl: '',
@@ -44,6 +43,6 @@ jobs:
           push: true
           context: .
           file: ./Dockerfile
-          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:v3
+          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:v4
 
         
