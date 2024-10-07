@@ -10,7 +10,6 @@ on:
   push:     
   pull_request:
     
-
 jobs:
   build-ui:
     environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}
@@ -29,6 +28,6 @@ jobs:
           push: true
           context: .
           file: ./Dockerfile
-          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:v2
+          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:v3
 
         
