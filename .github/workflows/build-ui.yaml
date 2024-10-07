@@ -23,8 +23,9 @@ jobs:
           echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
 
       - name: create environment.ts 
+        working-directory: ./ui/src/environments/
         run: |
-          cat > ./ui/src/environments/environment.ts <<EOF
+          cat > environment.ts <<EOF
           export const environment = {
           production: '',
           baseApiUrl: '',
@@ -35,6 +36,7 @@ jobs:
           mail: '',
           };
           EOF          
+        shell: bash          
 
       - name: build and push to registry
         uses: docker/build-push-action@v6
