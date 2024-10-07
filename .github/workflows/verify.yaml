@@ -21,6 +21,10 @@ jobs:
       - name: build app
         run: yarn build
 
+      - name: build app
+        run: yarn lint        
+
+
 
 
 
