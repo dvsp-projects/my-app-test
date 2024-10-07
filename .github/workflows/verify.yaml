@@ -3,8 +3,13 @@ on:
   workflow_dispatch:
     
 jobs:
-  build-jobs: 
+  build-job: 
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
+        
+      - name: install dependencies
+        run: npm install
+
+
