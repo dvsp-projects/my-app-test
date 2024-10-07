@@ -16,10 +16,10 @@ jobs:
           node-version: 20
       
       - name: install dependencies
-        run: npm install
+        run: yarn install --frozen-lockfile
 
       - name: build app
-        run: npm build
+        run: yarn build
 
 
 
