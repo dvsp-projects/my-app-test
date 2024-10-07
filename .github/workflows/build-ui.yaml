@@ -23,7 +23,7 @@ jobs:
           echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
 
       - name: create environment.ts 
-        working-directory: ui/src/environments
+        working-directory: ./ui/src/environments/
         run: |
           cat > environment.ts << EOF
           export const environment = {
