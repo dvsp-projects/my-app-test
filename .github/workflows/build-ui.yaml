@@ -25,7 +25,7 @@ jobs:
       - name: create environment.ts 
         # working-directory: /
         run: |
-          cat > ui/environment.ts <<EOF
+          cat <<EOT > ui/environment.ts
           export const environment = {
           production: '',
           baseApiUrl: '',
@@ -35,7 +35,7 @@ jobs:
           msalResourceScopeID: '',
           mail: '',
           };
-          EOF          
+          <EOT          
         shell: bash          
 
       - name: build and push to registry
