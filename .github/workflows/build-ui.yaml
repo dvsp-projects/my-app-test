@@ -18,21 +18,7 @@ jobs:
     steps:
       - name: set tag
         id: set-tag
-        run: echo "BUILD_TAG=$(date +"%Y%m%d")" >> "$GITHUB_OUTPUT"
-
-      - name: print output
-        run: |          
-          echo "111111111=${{ steps.set-tag.outputs.BUILD_TAG }}"
-          echo "111111111=$GITHUB_OUTPUT"
-
-      - name: build status   
-        id: status
-        run: echo "STATUS123=build success" >> "$GITHUB_OUTPUT"     
-
-      - name: print status          
-        run: |
-          echo "print_status=${{ steps.status.outputs.STATUS123 }}"
-          echo "2222=${{ BUILD_STATUS }}"
+        run: echo "BUILD_TAG=$(date +"%Y%m%d%H%M%S")" >> "$GITHUB_OUTPUT"
 
   # build-ui:
   #   environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}
