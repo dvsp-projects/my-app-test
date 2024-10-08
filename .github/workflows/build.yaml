@@ -20,7 +20,7 @@ jobs:
         run: echo "BUILD_TAG=$(date +"%Y%m%d%H%M%S")" >> "$GITHUB_OUTPUT"        
         
   build-ui:
-    environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}
+    environment: ${{  github.event_name == 'push' && 'staging' || inputs.environment }}
     runs-on: ubuntu-latest
     needs: set-tag
     steps:
