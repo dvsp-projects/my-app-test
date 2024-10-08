@@ -1,4 +1,4 @@
-name: build UI
+name: Build
 on:  
   workflow_dispatch:
     inputs:
@@ -10,14 +10,16 @@ on:
   push:
     
 jobs:
-  set-tag:
-    outputs:
-      BUILD_TAG: ${{ steps.set-tag.outputs.BUILD_TAG }}      
+  set-tag:  
     runs-on: ubuntu-latest
+    outputs:
+      BUILD_TAG: ${{ steps.set-tag.outputs.BUILD_TAG }}    
     steps:
       - name: Set Tag
         id: set-tag
-        run: echo "BUILD_TAG=$(date +"%Y%m%d%H%M%S")" >> "$GITHUB_OUTPUT"
+        # run: echo "BUILD_TAG=$(date +"%Y%m%d%H%M%S")" >> "$GITHUB_OUTPUT"
+        run: echo "BUILD_TAG=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+        
 
   build-ui:
     environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}
