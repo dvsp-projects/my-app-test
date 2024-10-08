@@ -47,13 +47,11 @@ jobs:
         shell: bash
 
       - name: Build and push to registry
-        run: |
-          echo "777777=${{ needs.set-tag.outputs.BUILD_TAG }}"
-        # uses: docker/build-push-action@v6
-        # with:
-        #   push: true
-        #   context: .
-        #   file: ./Dockerfile
-        #   tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:${{ needs.set-tag.outputs.BUILD_TAG }}
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          context: .
+          file: ./Dockerfile
+          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:${{ needs.set-tag.outputs.BUILD_TAG }}
 
         
