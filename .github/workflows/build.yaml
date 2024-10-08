@@ -54,6 +54,6 @@ jobs:
           push: true
           context: .
           file: ./Dockerfile
-          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:${{ needs.set-tag.outputs.BUILD_TAG }}-"%Y%m%d%H%M%S"
+          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:${{ needs.set-tag.outputs.BUILD_TAG }}"
 
         
