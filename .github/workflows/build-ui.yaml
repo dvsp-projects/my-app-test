@@ -17,12 +17,12 @@ jobs:
     steps:
       - name: Set tag
         id: set-tag
-        run: echo "BUILD_TAG=$(date +"%Y%m%d%")" >> "$GITHUB_OUTPUT"
+        run: echo "BUILD_TAG=$(date +"%Y%m%d")" >> "$GITHUB_OUTPUT"
 
-      # - name: Print output
-      #   run: |          
-      #     echo "111111111=steps.set-tag.outputs.BUILD_TAG"
-      #     echo "111111111=$GITHUB_OUTPUT"
+      - name: Print output
+        run: |          
+          echo "111111111=steps.set-tag.outputs.BUILD_TAG"
+          echo "111111111=$GITHUB_OUTPUT"
 
   # build-ui:
   #   environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}
