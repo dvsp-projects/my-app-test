@@ -26,7 +26,7 @@ jobs:
 
       - name: build status   
         id: status
-        run: echo "STATUS=success" >> "$GITHUB_OUTPUT"     
+        run: echo "STATUS123=success" >> "$GITHUB_OUTPUT"     
 
       - name: print status          
         run: |
