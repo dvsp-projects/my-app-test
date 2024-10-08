@@ -21,7 +21,7 @@ jobs:
 
       - name: Print output
         run: |          
-          echo "111111111=steps.set-tag.outputs.BUILD_TAG"
+          echo "111111111=${{ steps.set-tag.outputs.BUILD_TAG }}"
           echo "111111111=$GITHUB_OUTPUT"
 
   # build-ui:
