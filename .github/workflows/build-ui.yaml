@@ -7,13 +7,13 @@ on:
         type: environment
         required: true
         description: Select the environment
-  push:     
+  push:
     
 jobs:
   set-tag:
-    runs-on: ubuntu-latest
     outputs:
       BUILD_TAG: ${{ steps.set-tag.outputs.BUILD_TAG }}
+    runs-on: ubuntu-latest
     steps:
       - name: Set tag
         id: set-tag
