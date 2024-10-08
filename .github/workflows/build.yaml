@@ -18,7 +18,7 @@ jobs:
       - name: Set Tag
         id: set-tag
         # run: echo "BUILD_TAG=$(date +"%Y%m%d%H%M%S")" >> "$GITHUB_OUTPUT"
-        run: echo "BUILD_TAG=${{ github.ref_name +"%Y%m%d%H%M%S" }}" >> "$GITHUB_OUTPUT"
+        run: echo "BUILD_TAG=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
         
 
   build-ui:
@@ -54,6 +54,6 @@ jobs:
           push: true
           context: .
           file: ./Dockerfile
-          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:${{ needs.set-tag.outputs.BUILD_TAG }}
+          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:${{ needs.set-tag.outputs.BUILD_TAG }}-"%Y%m%d%H%M%S"
 
         
