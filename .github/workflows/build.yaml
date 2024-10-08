@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        default: dev
+        default: staging
         type: environment
         required: true
         description: Select the environment
@@ -17,43 +17,16 @@ jobs:
     steps:
       - name: Set Tag
         id: set-tag
-        # run: echo "BUILD_TAG=$(date +"%Y%m%d%H%M%S")" >> "$GITHUB_OUTPUT"
-        run: echo "BUILD_TAG=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+        run: echo "BUILD_TAG=$(date +"%Y%m%d%H%M%S")" >> "$GITHUB_OUTPUT"        
         
-
   build-ui:
-    environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}
-    runs-on: ubuntu-latest
+    uses: ./github/workflows/build-ui.yaml    
     needs: set-tag
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    secrets: inherit
+    with:
+      environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}  
+      tag: ${{ needs.set-tag.outputs.BUILD_TAG }}
 
-      - name: Docker login
-        run: |                    
-          echo "${{ secrets.OCIR_AUTH_TOKEN }}" | docker login --username ${{ secrets.OCIR_DOCKER_USER }} --password-stdin
 
-      - name: Create environment.ts
-        run: |
-          cat <<EOT > ui/src/environments/environment.ts
-          export const environment = {
-          production: '',
-          baseApiUrl: '',
-          baseUrl: '',
-          msalClientID: '',
-          msalTenantID: '',
-          msalResourceScopeID: '',
-          mail: '',
-          };
-          EOT
-        shell: bash
-
-      - name: Build and push to registry
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          context: .
-          file: ./Dockerfile
-          tags: ${{ secrets.OCIR_DOCKER_REGISTRY }}:${{ needs.set-tag.outputs.BUILD_TAG }}"
 
         
