@@ -10,7 +10,7 @@ on:
       tag:
         description: Docker image tags
         type: string                
-  push:
+  # push:
     
 jobs:
   set-tag:  

@@ -1,0 +1,32 @@
+name: Build
+on:  
+  workflow_dispatch:
+    inputs:
+      environment:
+        default: staging
+        type: environment
+        required: true
+        description: Select the environment
+  # push:
+    
+jobs:
+  set-tag:  
+    runs-on: ubuntu-latest
+    outputs:
+      BUILD_TAG: ${{ steps.set-tag.outputs.BUILD_TAG }}    
+    steps:
+      - name: Set Tag
+        id: set-tag
+        run: echo "BUILD_TAG=$(date +"%Y%m%d%H%M%S")" >> "$GITHUB_OUTPUT"        
+        
+  build-ui:
+    uses: ./github/workflows/build-ui.yaml    
+    needs: set-tag
+    secrets: inherit
+    with:
+      environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}  
+      tag: ${{ needs.set-tag.outputs.BUILD_TAG }}
+
+
+
+        
