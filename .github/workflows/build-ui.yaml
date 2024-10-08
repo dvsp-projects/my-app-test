@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Set tag
         id: set-tag
-        run: echo "BUILD_TAG=$((date +"%Y%m%d%")" >> "$GITHUB_OUTPUT"
+        run: echo "BUILD_TAG=$(date +"%Y%m%d%")" >> "$GITHUB_OUTPUT"
 
       # - name: Print output
       #   run: |          
