@@ -15,14 +15,22 @@ jobs:
       BUILD_TAG: ${{ steps.set-tag.outputs.BUILD_TAG }}
     runs-on: ubuntu-latest
     steps:
-      - name: Set tag
+      - name: set tag
         id: set-tag
         run: echo "BUILD_TAG=$(date +"%Y%m%d")" >> "$GITHUB_OUTPUT"
 
-      - name: Print output
+      - name: print output
         run: |          
           echo "111111111=${{ steps.set-tag.outputs.BUILD_TAG }}"
           echo "111111111=$GITHUB_OUTPUT"
+
+      - name: build status   
+        id: status
+        run: echo "STATUS=success" >> "$GITHUB_OUTPUT"     
+
+      - name: print status          
+        run: |
+          echo "2222222=${{ steps.status.outputs.status }}"
 
   # build-ui:
   #   environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}
