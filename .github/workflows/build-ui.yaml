@@ -32,7 +32,7 @@ jobs:
       - name: print status          
         run: |
           echo "print_status=${{ steps.status.outputs.STATUS123 }}"
-          echo "2222=BUILD_STATUS"
+          echo "2222=outputs.BUILD_STATUS"
 
   # build-ui:
   #   environment: ${{  github.event_name == 'push' && 'dev' || inputs.environment }}
