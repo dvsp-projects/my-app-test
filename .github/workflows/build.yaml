@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        default: staging
+        default: stage
         type: environment
         required: true
         description: Select the environment
