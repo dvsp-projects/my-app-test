@@ -1,4 +1,4 @@
-name: Build
+name: Build-stage
 on:  
   workflow_dispatch:
     inputs:
